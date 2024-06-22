@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 2</title>
+</head>
+<body>
+  <script>
+    
+    let inicio = ["unacadena", 3, 9, 1, 10, 500, 1, 10, -30, true];
+
+let numerosOrdenados = [];
+
+function encontrarMayor(arr) {
+  //para buscar número real en el array se considerará el "mayor" hasta que encontremos un número aún mayor.
+
+  let mayor = -Infinity;
+  // valor que indica que aún no hemos encontrado ningún número en el array que cumpla con los criterios para ser considerado el "mayor"
+  let indiceMayor = -1;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] === 'number' && !isNaN(arr[i]) && typeof arr[i] !== 'boolean') {
+
+      //verifica si el elemento en la posición i es mayor que el valor actual de mayor
+      if (arr[i] > mayor) {
+
+        //actualizamos el valor de mayor con el valor del elemento en la posición i
+        mayor = arr[i];
+
+       // se actualiza el valor de indiceMayor con la posición (i) del elemento más grande encontrado
+        indiceMayor = i;
+      }
+    }
+  }
+
+  return indiceMayor;
+}
+
+//encuentra el número más grande en el array inicial en cada iteración luego lo agrega al array numerosOrdenados y lo elimina del array inicio
+while (true) {
+  const indiceMayor = encontrarMayor(inicio);
+
+  if (indiceMayor === -1) {
+    break;
+  }
+//el número se agrega al array numerosOrdenados
+  numerosOrdenados.push(inicio[indiceMayor]);
+
+  //Se usa splice para eliminar el número encontrado del array inicio
+  inicio.splice(indiceMayor, 1);
+}
+
+console.log("Numeros ordenados de mayor a menor:", numerosOrdenados);
+
+
+
+  </script>
+</body>
+</html>
